@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jack'
+version '5.3.20-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    compile(project(":spring-beans"))
+//    compile(project(":spring-core"))
+//    compile(project(":spring-context"))
+//    testImplementation(project(":spring-beans"))
+//    testImplementation(project(":spring-core"))
+//    testImplementation(project(":spring-context"))
+
+//    compileOnly(project(":spring-beans"))
+//    compileOnly(project(":spring-core"))
+//    compileOnly(project(":spring-context"))
+
+    implementation(project(":spring-beans"))
+    implementation(project(":spring-core"))
+    implementation(project(":spring-context"))
+
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- services -->
+
+	<bean id="person" class="com.jack.model.Person" scope="prototype">
+		<meta key="metaKey" value="metaValue"/>
+		<property name="name" value="xiaolang"/>
+		<property name="age" value="118"/>
+	</bean>
+
+	<bean id="person2" class="com.jack.model.Person">
+		<constructor-arg index="0" value="cjack" />
+		<constructor-arg index="1" value="100"/>
+		<property name="name" value="jack"/>
+		<property name="age" value="18"/>
+	</bean>
+
+	<!-- more bean definitions for services go here -->
+
+</beans>
