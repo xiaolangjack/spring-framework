@@ -11,7 +11,7 @@ This project is governed by the [Spring Code of Conduct](CODE_OF_CONDUCT.adoc). 
 ## Access to Binaries
  
 For access to artifacts or a distribution zip, see the [Spring Framework Artifacts](https://github.com/spring-projects/spring-framework/wiki/Spring-Framework-Artifacts) wiki page.
- 
+  
 ## Documentation
 
 The Spring Framework maintains reference documentation ([published](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/) and [source](src/docs/asciidoc)), Github [wiki pages](https://github.com/spring-projects/spring-framework/wiki), and an
