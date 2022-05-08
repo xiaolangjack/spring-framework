@@ -2,6 +2,8 @@ package com.jack.model.config;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * Created By: yy
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.InitializingBean;
  * <p>
  */
 
+@Component
 public class BeanTwo  implements InitializingBean, DisposableBean {
 
 
@@ -21,6 +24,7 @@ public class BeanTwo  implements InitializingBean, DisposableBean {
 		this.key = key;
 	}
 
+	@Value("beanTwo Key")
 	private String key;
 
 	public String getKey() {
