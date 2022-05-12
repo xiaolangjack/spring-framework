@@ -8,6 +8,9 @@ import com.jack.service.impl.ClassService;
 import com.jack.service.impl.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 /**
  * Created By: yy<lanqiu@deloitte.com.cn>
@@ -77,7 +80,6 @@ public class Demo {
 
 		// use annotation to config bean
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		Hellow hellow = context.getBean("hellow", Hellow.class);
 		BeanOne beanOne = context.getBean("beanOne", BeanOne.class);
 		BeanTwo beanTwo = context.getBean("beanTwo", BeanTwo.class);
 		BeanThree beanThree1 = context.getBean("&beanThree", BeanThree.class);
