@@ -4,8 +4,12 @@ import com.jack.config.AppConfig;
 import com.jack.config.AspectJAutoProxy;
 import com.jack.model.Person;
 import com.jack.model.config.*;
+import com.jack.service.Service;
 import com.jack.service.impl.ClassService;
 import com.jack.service.impl.UserService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.expression.Expression;
@@ -20,6 +24,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 public class Demo {
 
+	private final Log log = LogFactory.getLog(getClass());
 
 	public static void main(String[] args) {
 
@@ -37,9 +42,15 @@ public class Demo {
 //		println();
 //		profileAndScan("prod");
 
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AspectJAutoProxy.class);
-		UserService bean = context.getBean("userService", UserService.class);
-		ClassService bean2 = context.getBean("classService", ClassService.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.jack.service");
+		context.register(AspectJAutoProxy.class);
+		context.refresh();
+		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+
+		Service bean = context.getBean("userService", UserService.class);
+		Service bean2 = context.getBean("classService", ClassService.class);
+
 		bean.show();
 		bean2.show();
 

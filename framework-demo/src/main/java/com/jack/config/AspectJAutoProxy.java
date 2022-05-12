@@ -12,8 +12,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * <p>
  */
 @Configuration
-@ComponentScan(basePackages = {"com.jack.service", "com.jack.aop"})
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+//@ComponentScan(basePackages = {"com.jack.service"})
+@EnableAspectJAutoProxy()
 public class AspectJAutoProxy {
 
 }
