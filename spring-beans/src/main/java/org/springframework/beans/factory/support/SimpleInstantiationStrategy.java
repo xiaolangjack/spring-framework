@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Simple object instantiation strategy for use in a BeanFactory.
- *
+ * 用于 BeanFactory 简单的实例化策略
  * <p>Does not support Method Injection, although it provides hooks for subclasses
  * to override to add Method Injection support, for example by overriding methods.
  *

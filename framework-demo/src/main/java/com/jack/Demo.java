@@ -29,8 +29,8 @@ public class Demo {
 	public static void main(String[] args) {
 
 		// use XML to config bean
-//		xmlConfig();
-//		println();
+		xmlConfig();
+		println();
 		// use annotation to config bean
 //		annotationConfig();
 //		println();
@@ -42,17 +42,18 @@ public class Demo {
 //		println();
 //		profileAndScan("prod");
 
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-		context.scan("com.jack.service");
-		context.register(AspectJAutoProxy.class);
-		context.refresh();
-		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
-
-		Service bean = context.getBean("userService", UserService.class);
-		Service bean2 = context.getBean("classService", ClassService.class);
-
-		bean.show();
-		bean2.show();
+		// AOP Demo
+//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+//		context.scan("com.jack.service");
+//		context.register(AspectJAutoProxy.class);
+//		context.refresh();
+//		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
+//
+//		Service bean = context.getBean("userService", UserService.class);
+//		Service bean2 = context.getBean("classService", ClassService.class);
+//
+//		bean.show();
+//		bean2.show();
 
 
 //		ExpressionParser parser = new SpelExpressionParser();

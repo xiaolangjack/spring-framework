@@ -229,13 +229,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	private ApplicationStartup applicationStartup = ApplicationStartup.DEFAULT;
 
 	/** Statically specified listeners. */
+	// 静态指定的监听器
 	private final Set<ApplicationListener<?>> applicationListeners = new LinkedHashSet<>();
 
 	/** Local listeners registered before refresh. */
+	// 在刷新前的本地已注册的监听器
 	@Nullable
 	private Set<ApplicationListener<?>> earlyApplicationListeners;
 
 	/** ApplicationEvents published before the multicaster setup. */
+	// 事件在多播器设置之前的发布
 	@Nullable
 	private Set<ApplicationEvent> earlyApplicationEvents;
 
@@ -569,7 +572,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
-			// 初始化 BeanFactory
+			// 配置 BeanFactory。比如设置post-processors或者当前上下文的 ClassLoader；
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -577,7 +580,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// 在这里可以对 beanFactory 进行重新自定义赋值
 				postProcessBeanFactory(beanFactory);
 
-				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
+  				StartupStep beanPostProcess = this.applicationStartup.start("spring.context.beans.post-process");
 				// Invoke factory processors registered as beans in the context.
 				// 实例化和调用所有已注册的 BeanFactoryPostProcessor bean
 				invokeBeanFactoryPostProcessors(beanFactory);
@@ -673,12 +676,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 		else {
 			// Reset local application listeners to pre-refresh state.
+			// 在刷新前的本地已注册的监听器（earlyApplicationListeners）不为空的时候直接将监听器添加到指定的静态监听器（applicationListeners）中
 			this.applicationListeners.clear();
 			this.applicationListeners.addAll(this.earlyApplicationListeners);
 		}
 
-		// Allow for the collection of early ApplicationEvents,
-		// to be published once the multicaster is available...
+		// Allow for the collection of early ApplicationEvents,//
+		// to be published once the multicaster is available...// 多播器启动以后执行发布
 		this.earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
@@ -719,6 +723,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Configure the bean factory with context callbacks.
 		// 添加增强器和设置忽略的 Aware 接口的实现
 		beanFactory.addBeanPostProcessor(new ApplicationContextAwareProcessor(this));
+
 		beanFactory.ignoreDependencyInterface(EnvironmentAware.class);
 		beanFactory.ignoreDependencyInterface(EmbeddedValueResolverAware.class);
 		beanFactory.ignoreDependencyInterface(ResourceLoaderAware.class);
@@ -734,7 +739,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		beanFactory.registerResolvableDependency(ApplicationEventPublisher.class, this);
 		beanFactory.registerResolvableDependency(ApplicationContext.class, this);
 
-		// Register early post-processor for detecting inner beans as ApplicationListeners.  这是 BeanPostProcessor
+		// Register early post-processor for detecting inner beans as ApplicationListeners.
+		// 这是 BeanPostProcessor
 		beanFactory.addBeanPostProcessor(new ApplicationListenerDetector(this));
 
 		// Detect a LoadTimeWeaver and prepare for weaving, if found.
