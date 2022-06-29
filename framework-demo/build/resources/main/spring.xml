@@ -6,13 +6,13 @@
 
 	<!-- services -->
 
-	<bean id="person" class="com.jack.model.Person" scope="prototype">
+	<bean id="person" class="com.jack.ioc.model.Person" scope="prototype">
 		<meta key="metaKey" value="metaValue"/>
 		<property name="name" value="xiaolang"/>
 		<property name="age" value="118"/>
 	</bean>
 
-	<bean id="person2" class="com.jack.model.Person">
+	<bean id="person2" class="com.jack.ioc.model.Person">
 		<constructor-arg index="0" value="cjack" />
 		<constructor-arg index="1" value="100"/>
 		<property name="name" value="jack"/>

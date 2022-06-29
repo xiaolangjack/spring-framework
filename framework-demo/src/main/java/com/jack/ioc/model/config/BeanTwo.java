@@ -1,4 +1,4 @@
-package com.jack.model.config;
+package com.jack.ioc.model.config;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class BeanTwo  implements InitializingBean, DisposableBean {
+public class BeanTwo implements InitializingBean, DisposableBean {
 
 
 	public BeanTwo() {

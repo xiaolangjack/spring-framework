@@ -1,9 +1,11 @@
-package com.jack.config;
+package com.jack.ioc.config;
 
-import com.jack.model.config.*;
+import com.jack.ioc.model.config.BeanFour;
+import com.jack.ioc.model.config.BeanOne;
+import com.jack.ioc.model.config.BeanThree;
+import com.jack.ioc.model.config.BeanTwo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
 
 /**
  * Created By: yy
@@ -20,7 +22,7 @@ public class AppConfig {
 			initMethod = "init",
 			destroyMethod = "cleanup"
 	)
-	public BeanOne beanOne(){
+	public BeanOne beanOne() {
 		return new BeanOne();
 	}
 
@@ -35,7 +37,7 @@ public class AppConfig {
 	}
 
 	@Bean
-	public BeanFour beanFour(){
+	public BeanFour beanFour() {
 		return new BeanFour();
 	}
 

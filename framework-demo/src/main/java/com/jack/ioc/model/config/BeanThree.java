@@ -1,4 +1,4 @@
-package com.jack.model.config;
+package com.jack.ioc.model.config;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,7 @@ public class BeanThree implements BeanPostProcessor, FactoryBean {
 
 	@Value("bean three value")
 	private String value;
+
 	// simply return the instantiated bean as-is
 	public Object postProcessBeforeInitialization(Object bean, String beanName) {
 		return bean; // we could potentially return any object reference here...

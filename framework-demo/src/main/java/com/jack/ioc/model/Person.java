@@ -1,4 +1,4 @@
-package com.jack.model;
+package com.jack.ioc.model;
 
 /**
  * Created By: yy<lanqiu@deloitte.com.cn>

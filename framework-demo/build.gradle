@@ -7,6 +7,8 @@ version '5.3.20-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    // download jdbc dependency needed
+    google()
 }
 
 dependencies {
@@ -21,13 +23,27 @@ dependencies {
 //    compileOnly(project(":spring-core"))
 //    compileOnly(project(":spring-context"))
 
+    // Spring model
     implementation(project(":spring-beans"))
     implementation(project(":spring-core"))
     implementation(project(":spring-context"))
-    implementation("org.aspectj:aspectjrt:1.+")
+    implementation(project(":spring-jdbc"))
+    implementation(project(":spring-tx"))
+
+//    JDBC
+    implementation 'mysql:mysql-connector-java:8.0.29'
+
+    implementation 'com.alibaba:druid:1.2.10'
+//    AOP Package
+    implementation 'org.aspectj:aspectjrt'
+    implementation 'org.aspectj:aspectjweaver'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+
+    // Util Dependency
+    compileOnly 'org.projectlombok:lombok:1.18.24'
 }
 
 test {

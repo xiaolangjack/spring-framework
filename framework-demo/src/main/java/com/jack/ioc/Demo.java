@@ -1,20 +1,16 @@
-package com.jack;
+package com.jack.ioc;
 
-import com.jack.config.AppConfig;
-import com.jack.config.AspectJAutoProxy;
-import com.jack.model.Person;
-import com.jack.model.config.*;
-import com.jack.service.Service;
-import com.jack.service.impl.ClassService;
-import com.jack.service.impl.UserService;
+import com.jack.ioc.config.AppConfig;
+import com.jack.ioc.config.AspectJAutoProxy;
+import com.jack.ioc.model.Person;
+import com.jack.ioc.model.config.BeanFour;
+import com.jack.ioc.model.config.BeanOne;
+import com.jack.ioc.model.config.BeanThree;
+import com.jack.ioc.model.config.BeanTwo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.expression.Expression;
-import org.springframework.expression.ExpressionParser;
-import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 /**
  * Created By: yy<lanqiu@deloitte.com.cn>
@@ -29,8 +25,8 @@ public class Demo {
 	public static void main(String[] args) {
 
 		// use XML to config bean
-		xmlConfig();
-		println();
+//		xmlConfig();
+//		println();
 		// use annotation to config bean
 //		annotationConfig();
 //		println();
@@ -41,20 +37,6 @@ public class Demo {
 //		profileAndScan("dev");
 //		println();
 //		profileAndScan("prod");
-
-		// AOP Demo
-//		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-//		context.scan("com.jack.service");
-//		context.register(AspectJAutoProxy.class);
-//		context.refresh();
-//		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
-//
-//		Service bean = context.getBean("userService", UserService.class);
-//		Service bean2 = context.getBean("classService", ClassService.class);
-//
-//		bean.show();
-//		bean2.show();
-
 
 //		ExpressionParser parser = new SpelExpressionParser();
 //		Expression exp = parser.parseExpression("new String('hello world').toUpperCase()");
@@ -68,9 +50,9 @@ public class Demo {
 	 */
 	public static void profileAndScan(String profile) {
 		AnnotationConfigApplicationContext context;
-		if (profile.isEmpty()){
+		if (profile.isEmpty()) {
 			context = new AnnotationConfigApplicationContext(AspectJAutoProxy.class);
-		}else{
+		} else {
 			context = new AnnotationConfigApplicationContext();
 			context.getEnvironment().setActiveProfiles(profile);
 			context.register(AspectJAutoProxy.class);
@@ -117,27 +99,25 @@ public class Demo {
 	}
 
 
-
-
-
-
-
 	// ============================================
 	//
 	// Next function is tool for print placeholder
 	//
 	// ============================================
-	static void println(Integer integer){
+	static void println(Integer integer) {
 		println(integer, "-");
 	}
-	static void println(String sharp){
+
+	static void println(String sharp) {
 		println(100, sharp);
 	}
-	static void println(){
+
+	static void println() {
 		println(100, "-");
 	}
-	static void println(Integer length, String sharp){
-		if (length >0){
+
+	static void println(Integer length, String sharp) {
+		if (length > 0) {
 			for (int i = 0; i < length; i++) {
 				System.out.print(sharp);
 			}

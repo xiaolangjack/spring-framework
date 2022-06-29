@@ -1,6 +1,5 @@
-package com.jack.service.impl;
+package com.jack.ioc.service.aop.impl;
 
-import com.jack.service.Service;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,9 +10,8 @@ import org.springframework.stereotype.Component;
  * <p>
  */
 @Component
-public class ClassService implements Service {
-	
-	@Override
+public class ClassService {
+
 	public void show() {
 		System.out.println(".......................... classService Show () ..........................");
 	}

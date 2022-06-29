@@ -1,4 +1,4 @@
-package com.jack.service;
+package com.jack.aop.service;
 
 /**
  * Created By: yy
@@ -11,5 +11,7 @@ package com.jack.service;
 public interface Service {
 
 	void show();
+
+	void show(String name);
 
 }

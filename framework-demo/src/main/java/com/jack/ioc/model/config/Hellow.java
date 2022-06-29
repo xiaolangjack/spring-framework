@@ -1,4 +1,4 @@
-package com.jack.model.config;
+package com.jack.ioc.model.config;
 
 /**
  * Created By: yy
