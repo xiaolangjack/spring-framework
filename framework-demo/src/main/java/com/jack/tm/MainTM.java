@@ -15,6 +15,5 @@ public class MainTM {
 
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigForTM.class);
 		User user = ctx.getBean("user", User.class);
-		String name = user.getName();
 	}
 }
