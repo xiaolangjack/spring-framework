@@ -1,8 +1,5 @@
 package com.jack.tm.models;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,11 +8,44 @@ import org.springframework.stereotype.Component;
  * <p>
  */
 
-@Component
-@Data
-@Setter
-@Getter
 public class User {
+
+	public User() {
+	}
+
+	public User(String name, String age, String sex) {
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+
 	private String name;
+
 	private String age;
+
+	private String sex;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
 }

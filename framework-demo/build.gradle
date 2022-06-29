@@ -32,8 +32,8 @@ dependencies {
 
 //    JDBC
     implementation 'mysql:mysql-connector-java:8.0.29'
-
     implementation 'com.alibaba:druid:1.2.10'
+
 //    AOP Package
     implementation 'org.aspectj:aspectjrt'
     implementation 'org.aspectj:aspectjweaver'
