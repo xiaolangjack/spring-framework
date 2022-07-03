@@ -19,6 +19,7 @@ package org.springframework.transaction;
 import org.springframework.lang.Nullable;
 
 /**
+ * 这个接口定义弹性兼容的事务属性. 基于类似于 EJB CMT 传播行为的定义,
  * Interface that defines Spring-compliant transaction properties.
  * Based on the propagation behavior definitions analogous to EJB CMT attributes.
  *
@@ -44,16 +45,20 @@ import org.springframework.lang.Nullable;
 public interface TransactionDefinition {
 
 	/**
+	 * 支持当前事务; 如果不存在则创建一个新的事务.
 	 * Support a current transaction; create a new one if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p>This is typically the default setting of a transaction definition,
 	 * and typically defines a transaction synchronization scope.
 	 */
 	int PROPAGATION_REQUIRED = 0;
 
 	/**
+	 * 支持当前事务; 如果不存在则以非事务(正常执行)的方式执行
 	 * Support a current transaction; execute non-transactionally if none exists.
 	 * Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p><b>NOTE:</b> For transaction managers with transaction synchronization,
 	 * {@code PROPAGATION_SUPPORTS} is slightly different from no transaction
 	 * at all, as it defines a transaction scope that synchronization might apply to.
@@ -73,16 +78,20 @@ public interface TransactionDefinition {
 	int PROPAGATION_SUPPORTS = 1;
 
 	/**
+	 * 支持当前事务; 如果当前事务不存在则抛出异常
 	 * Support a current transaction; throw an exception if no current transaction
 	 * exists. Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p>Note that transaction synchronization within a {@code PROPAGATION_MANDATORY}
 	 * scope will always be driven by the surrounding transaction.
 	 */
 	int PROPAGATION_MANDATORY = 2;
 
 	/**
+	 * 创建一个新的事务,如果存在一个事务则暂停当前事务.
 	 * Create a new transaction, suspending the current transaction if one exists.
 	 * Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p><b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
 	 * on all transaction managers. This in particular applies to
 	 * {@link org.springframework.transaction.jta.JtaTransactionManager},
@@ -96,8 +105,10 @@ public interface TransactionDefinition {
 	int PROPAGATION_REQUIRES_NEW = 3;
 
 	/**
+	 * 不支持当前事务; 而总是以非事务的方式执行
 	 * Do not support a current transaction; rather always execute non-transactionally.
 	 * Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p><b>NOTE:</b> Actual transaction suspension will not work out-of-the-box
 	 * on all transaction managers. This in particular applies to
 	 * {@link org.springframework.transaction.jta.JtaTransactionManager},
@@ -111,17 +122,22 @@ public interface TransactionDefinition {
 	int PROPAGATION_NOT_SUPPORTED = 4;
 
 	/**
+	 * 不支持当前事务; 如果当前事务存在则抛出异常
 	 * Do not support a current transaction; throw an exception if a current transaction
 	 * exists. Analogous to the EJB transaction attribute of the same name.
+	 *
 	 * <p>Note that transaction synchronization is <i>not</i> available within a
 	 * {@code PROPAGATION_NEVER} scope.
 	 */
 	int PROPAGATION_NEVER = 5;
 
 	/**
+	 * 如果当前事务存在则在嵌套的事务中执行,否则行为类似于 PROPAGATION_REQUIRED
+	 * 在 EJB 中没有类似的特性(feature)
 	 * Execute within a nested transaction if a current transaction exists,
-	 * behave like {@link #PROPAGATION_REQUIRED} otherwise. There is no
+	 * behave li ke {@link #PROPAGATION_REQUIRED} otherwise. There is no
 	 * analogous feature in EJB.
+	 *
 	 * <p><b>NOTE:</b> Actual creation of a nested transaction will only work on
 	 * specific transaction managers. Out of the box, this only applies to the JDBC
 	 * {@link org.springframework.jdbc.datasource.DataSourceTransactionManager}
@@ -133,13 +149,16 @@ public interface TransactionDefinition {
 
 
 	/**
-	 * Use the default isolation level of the underlying datastore.
+	 * 使用底层的数据存储的默认隔离级别,
+	 * use the default isolation level of the underlying datastore.
+	 * 其他的所有级别都对应 JDBC 隔离级别
 	 * All other levels correspond to the JDBC isolation levels.
 	 * @see java.sql.Connection
 	 */
 	int ISOLATION_DEFAULT = -1;
 
 	/**
+	 * 可能发生脏读、不可重复读、幻读
 	 * Indicates that dirty reads, non-repeatable reads and phantom reads
 	 * can occur.
 	 * <p>This level allows a row changed by one transaction to be read by another
@@ -151,6 +170,7 @@ public interface TransactionDefinition {
 	int ISOLATION_READ_UNCOMMITTED = 1;  // same as java.sql.Connection.TRANSACTION_READ_UNCOMMITTED;
 
 	/**
+	 * 防止脏读；可能发生不可重复读和幻读
 	 * Indicates that dirty reads are prevented; non-repeatable reads and
 	 * phantom reads can occur.
 	 * <p>This level only prohibits a transaction from reading a row
@@ -160,6 +180,7 @@ public interface TransactionDefinition {
 	int ISOLATION_READ_COMMITTED = 2;  // same as java.sql.Connection.TRANSACTION_READ_COMMITTED;
 
 	/**
+	 * 防止脏读和不可重复读；可能发生幻读
 	 * Indicates that dirty reads and non-repeatable reads are prevented;
 	 * phantom reads can occur.
 	 * <p>This level prohibits a transaction from reading a row with uncommitted changes
@@ -171,6 +192,7 @@ public interface TransactionDefinition {
 	int ISOLATION_REPEATABLE_READ = 4;  // same as java.sql.Connection.TRANSACTION_REPEATABLE_READ;
 
 	/**
+	 * 防止脏读、不可重复读和幻读
 	 * Indicates that dirty reads, non-repeatable reads and phantom reads
 	 * are prevented.
 	 * <p>This level includes the prohibitions in {@link #ISOLATION_REPEATABLE_READ}

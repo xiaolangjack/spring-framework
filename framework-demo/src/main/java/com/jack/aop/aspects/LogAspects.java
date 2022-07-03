@@ -5,6 +5,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Component
 @Aspect
 public class LogAspects {
@@ -13,11 +15,11 @@ public class LogAspects {
 	public void pointCut() {
 	}
 
-//	@Before("pointCut()")
-//	public void logStart(JoinPoint joinPoint) {
-//		Object[] args = joinPoint.getArgs();
-//		System.out.println("" + joinPoint.getSignature().getName() + " Running ... @Before:Param List is : {" + Arrays.asList(args) + "}");
-//	}
+	@Before("pointCut()")
+	public void logStart(JoinPoint joinPoint) {
+		Object[] args = joinPoint.getArgs();
+		System.out.println("" + joinPoint.getSignature().getName() + " Running ... @Before:Param List is : {" + Arrays.asList(args) + "}");
+	}
 
 //	@After("com.jack.aop.aspects.LogAspects.pointCut()")
 //	public void logEnd(JoinPoint joinPoint) {

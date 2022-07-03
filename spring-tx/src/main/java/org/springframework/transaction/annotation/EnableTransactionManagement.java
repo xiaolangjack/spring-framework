@@ -27,6 +27,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.Ordered;
 
 /**
+ * 开启 Spring的注解驱动事务管理能力，就像Spring的xml命名空间{<tx:*>}。
+ * 用在 {org.springframework.context.annotation.Configuration @Configuration} 类上来配置传统的命令式事务管理和反应式事务管理
+ *
  * Enables Spring's annotation-driven transaction management capability, similar to
  * the support found in Spring's {@code <tx:*>} XML namespace. To be used on
  * {@link org.springframework.context.annotation.Configuration @Configuration}

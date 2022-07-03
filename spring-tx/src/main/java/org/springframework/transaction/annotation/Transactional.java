@@ -28,7 +28,7 @@ import org.springframework.transaction.TransactionDefinition;
 
 /**
  * Describes a transaction attribute on an individual method or on a class.
- *
+ * 描述类或方法的事务属性
  * <p>When this annotation is declared at the class level, it applies as a default
  * to all methods of the declaring class and its subclasses. Note that it does not
  * apply to ancestor classes up the class hierarchy; inherited methods need to be
