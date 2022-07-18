@@ -1,6 +1,7 @@
 package com.jack.aop;
 
 import com.jack.aop.config.MainConfigOfAOP;
+import com.jack.aop.service.LoginService;
 import com.jack.aop.service.impl.ClassService;
 import com.jack.aop.service.impl.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -13,6 +14,21 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class MainAop {
 
 	public static void main(String[] args) {
+//		aop();
+
+		source();
+
+	}
+
+	public static void source(){
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
+		LoginService bean = ctx.getBean(LoginService.class);
+		ClassService classService = ctx.getBean(ClassService.class);
+		classService.show("classService");
+	}
+
+
+	public static void aop(){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(MainConfigOfAOP.class);
 		UserService userService = ctx.getBean(UserService.class);
 		ClassService classService = ctx.getBean(ClassService.class);

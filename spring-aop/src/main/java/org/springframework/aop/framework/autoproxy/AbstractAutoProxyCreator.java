@@ -319,7 +319,7 @@ public abstract class AbstractAutoProxyCreator extends ProxyProcessorSupport
 	}
 
 	/**
-	 * Wrap the given bean if necessary, i.e. if it is eligible for being proxied.
+	 * Wrap the given bean if necessary, i.e. if it is eligible for being proxied.//如果有必要则包装指定的bean,即有资格被代理
 	 * @param bean the raw bean instance
 	 * @param beanName the name of the bean
 	 * @param cacheKey the cache key for metadata access
